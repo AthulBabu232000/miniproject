@@ -102,11 +102,15 @@ Serial.println(i);
 Serial.println(hr_total);
         tsLastReport = millis();
     }
-    if(i==10){
-      Serial.println(hr_total);
+    if(i==30){
+        delay(2000);
+       Firebase.setFloat(firebaseData, "athul/heartrate",hr);
+    Firebase.setFloat(firebaseData, "athul/spo2",o2);
+    pox.resume();
+      
     }
+  
 
-//    Firebase.setFloat(firebaseData, "athul/heartrate",hr);
-//    Firebase.setFloat(firebaseData, "athul/spo2",o2);
+   
 //    sensorUpdate(pox.getHeartRate(),pox.getSpO2());
 }
