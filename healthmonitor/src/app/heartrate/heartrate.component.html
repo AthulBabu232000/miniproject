@@ -4,6 +4,7 @@
         <div class="heart-icon">
             <i class="fa-brands fa-gratipay icon-content"></i>
         </div>
+        
     </div>
     <div *ngIf="i==1" class="heart-wrapper">
         <p class="wrapper-content">{{social.key}}</p>
@@ -11,6 +12,8 @@
             <i class="fa-solid fa-mask-ventilator"></i>
         </div>
     </div>
-<span>{{social.key}} : <span>{{social.value}}</span> <span></span></span>
+<span *ngIf="i==0">{{social.key}} : <span>{{social.value}}</span> bpm <span></span></span>
+<span *ngIf="i==1">{{social.key}} : <span>{{social.value}}</span> % <span></span></span>
+
 </div>
 
