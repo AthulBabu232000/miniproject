@@ -39,8 +39,8 @@ export class DetailentryComponent implements OnInit {
     azBPrange:0,
     baBPrange:0,
     bbBPrange:0,
-    bcBPrange:0,
-    bdBPrange:0,
+    // bcBPrange:0,
+    // bdBPrange:0,
   });
 
   constructor(private formBuilder: FormBuilder,private userDetails:UserService, private backEndService:BackEndService) { }
