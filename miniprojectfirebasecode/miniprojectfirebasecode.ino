@@ -9,7 +9,7 @@ uint32_t tsLastReport = 0;
 #define FIREBASE_HOST "nodemcuchecking-default-rtdb.firebaseio.com"      
 #define FIREBASE_AUTH "tw2vvsYd8KvwRtGq2wpaNBkzldbfsv0V1jz7rd6N"
 #define WIFI_SSID "betterNow"
-#define WIFI_PASSWORD "12332167"
+#define WIFI_PASSWORD "12345678"
 
 //Define FirebaseESP8266 data object
 FirebaseData firebaseData;

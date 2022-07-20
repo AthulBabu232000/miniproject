@@ -16,6 +16,7 @@ export class HealthService {
    
  
   ];
+  tableOfHealths:Health[]=[];
  
   getHealths() {
     return this.listOfHealths;
@@ -24,6 +25,7 @@ export class HealthService {
 this.listOfHealths=health;
 this.listChangedEvent.emit(this.listOfHealths);
 // console.log(this.listOfHealths);
+console.log(this.listChangedEvent);
 
   }
 

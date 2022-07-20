@@ -1,7 +1,13 @@
+.outer-container{
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+
+}
 .heart-container{
     height:100px;
     width:300px;
-    background: rgb(7, 148, 7);
+    background: #70D3FF;
     border:2px solid black;
     border-radius:15px;
     margin:60px auto;
@@ -38,4 +44,12 @@
     transform:translateY(-50%);
     font-size:small;
 
+}
+
+
+@media  only screen and (max-width:600px) {
+    
+    .outer-container{
+        flex-direction:column;
+    }
 }

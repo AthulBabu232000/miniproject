@@ -3,21 +3,42 @@ import { Injectable } from '@angular/core';
 import { tap } from 'rxjs';
 import { Health } from './health.model';
 import { HealthService } from './health.service';
+import { User } from './user.model';
+import { UserService } from './user.service';
 
 @Injectable({ providedIn: 'root' })
 export class BackEndService {
-  constructor(private healthService: HealthService, private http: HttpClient) {}
+  constructor(private healthService: HealthService, private http: HttpClient, private userService:UserService) {}
 
-  saveData() {
+  savedData(counter: number) {
     const listOfHealths: Health[] = this.healthService.getHealths();
+
     this.http
       .put(
-        'https://nodemcuchecking-default-rtdb.firebaseio.com/athulAdd.json',
+        `https://nodemcuchecking-default-rtdb.firebaseio.com/userAdd/hms${
+          counter + 1
+        }.json`,
         listOfHealths
       )
       .subscribe((res) => {
         console.log(res);
+        console.log(counter, 'again');
       });
+  }
+  saveData() {
+    this.http
+      .get<Health[]>(
+        'https://nodemcuchecking-default-rtdb.firebaseio.com/userAdd.json'
+      )
+      .pipe(
+        tap((listOfHealths: Health[]) => {
+          console.log(listOfHealths);
+          const n = Object.keys(listOfHealths).length;
+          console.log(n);
+          this.savedData(n);
+        })
+      )
+      .subscribe();
   }
 
   fetchData() {
@@ -27,10 +48,41 @@ export class BackEndService {
       )
       .pipe(
         tap((listOfHealths: Health[]) => {
-
-          this.healthService.updateHealths(listOfHealths)
+          this.healthService.updateHealths(listOfHealths);
         })
       )
       .subscribe();
   }
+
+
+  saveUser(d:Object){
+
+    this.http
+      .put(
+        `https://nodemcuchecking-default-rtdb.firebaseio.com/userDetails.json`,
+        d
+      )
+      .subscribe((res) => {
+        console.log(res);
+      });
+  }
 }
+
+
+
+
+// fetchSavedData(){
+//   this.http
+//   .get<Health[]>(
+//     'https://nodemcuchecking-default-rtdb.firebaseio.com/userAdd.json'
+//   )
+//   .pipe(
+//     tap((listOfHealths: Health[]) => {
+//       console.log(listOfHealths);
+//       const n = Object.keys(listOfHealths).length;
+//       console.log(n);
+//       this.savedData(n);
+//     })
+//   )
+//   .subscribe();
+// }
