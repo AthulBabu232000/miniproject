@@ -5,5 +5,5 @@
             <i class="fa-solid fa-stethoscope"></i>
         </div>
     </div>
-<span>Blood pressure:  <span></span> <span></span></span>
+<span *ngFor="let b of bp | keyvalue">Blood pressure:  <span></span> <span>{{b.value}}</span></span>
 </div>

@@ -66,6 +66,19 @@ export class BackEndService {
         console.log(res);
       });
   }
+
+  getBP(){
+    this.http
+    .get<string>(
+      'https://nodemcuchecking-default-rtdb.firebaseio.com/bloodpressure.json'
+    )
+    .pipe(
+      tap((bloodPressure: string) => {
+        this.healthService.updateBloodPressure(bloodPressure);
+      })
+    )
+    .subscribe();
+  }
 }
 
 

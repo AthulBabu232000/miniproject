@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BackEndService } from '../backend.service';
+import { HealthService } from '../health.service';
 
 @Component({
   selector: 'app-bloodpressure',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bloodpressure.component.css']
 })
 export class BloodpressureComponent implements OnInit {
-
-  constructor() { }
+bp?:string='';
+  constructor(private backEndService:BackEndService,private healthService:HealthService) { }
 
   ngOnInit(): void {
+this.healthService.changedBP.subscribe((bp:string)=>{
+  this.bp = this.healthService.getBP();
+ });
+this.backEndService.getBP();
+
   }
+
 
 }

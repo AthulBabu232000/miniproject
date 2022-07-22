@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BackEndService } from './backend.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'healthmonitor';
+  constructor(private backEndService:BackEndService) {
+    
+  }
+  ngOnInit(): void {
+    this.backEndService.fetchData();
+    // this.backEndService.getBP();
+   
+  }
 }

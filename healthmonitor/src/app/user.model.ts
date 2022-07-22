@@ -1,12 +1,13 @@
 export class User {
     constructor(
 
-      public aaAge: String,
-      public abSugar: String,
-      public acMaxHR: String,
-      public adHeartDisease: Number,
-      public aeSex_F: Number,
-      public afSex_M:Number,
+      public aaAge: string,
+      public abSugar: boolean,
+      public acMaxHR: string,
+      public adHeartDisease: boolean,
+      public gender: string,
+      public selection:string,
+      
 
     ) {}
   }

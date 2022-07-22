@@ -8,7 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DisplayerComponent } from './displayer/displayer.component';
 import { RouterModule, Routes } from '@angular/router';
 import { DetailentryComponent } from './detailentry/detailentry.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [
   { path: '', component: HeartrateComponent },
@@ -31,6 +31,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes, { enableTracing: true }),
     ReactiveFormsModule,
+    FormsModule
   
   ],
   providers: [],

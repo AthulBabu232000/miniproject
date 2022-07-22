@@ -1,357 +1,433 @@
-<form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label for="aaAge"> Age </label>
-    <input id="aaAge" type="text" formControlName="aaAge" />
+<form #userForm="ngForm"(ngSubmit)="onSubmit()">
+  <!-- {{userForm.value | json}} -->
+  <hr>
+  <!-- {{userModel | json}} -->
+  <div class="row mx-auto">
+    <div class="form-group  mt-3 col-md-6">
+      <label for="aaAge"> Age </label>
+      <input [(ngModel)]="userModel.aaAge" required minlength="4"
+        id="aaAge"
+        class="form-control mt-3"
+        type="text"
+        name="aaAge"
+      />
+    </div>
+    <div class="form-group  mt-3 col-md-6">
+      <label for="acMaxHR"> MaxHR </label>
+      <input [(ngModel)]="userModel.acMaxHR"
+        id="acMaxHR"
+        class="form-control mt-3"
+        type="text"
+        name="acMaxHR"
+      />
+    </div>
   </div>
 
-  <div>
-    <label for="abSugar"> Sugar </label>
-    <input id="abSugar" type="text" formControlName="abSugar" />
+  <div class="row mx-auto">
+    <div class=" mt-3 col-md-6 mx-auto">
+      <div class="form-check">
+        <input [(ngModel)]="userModel.abSugar"
+          id="abSugar"
+          class="form-check-input"
+          type="checkbox"
+          name="abSugar"
+          isnotchecked
+        />
+        <label for="abSugar" class="form-check-label"> Sugar </label>
+      </div>
+    </div>
+
+    <div class=" mt-3 col-md-6 mx-auto">
+      <div class="form-check">
+        <input [(ngModel)]="userModel.adHeartDisease"
+          id="adHeartDisease"
+          type="checkbox"
+          class="form-check-input"
+          name="adHeartDisease"
+      
+        />
+        <label for="adHeartDisease" class="form-check-label">
+          Heart Disease
+        </label>
+      </div>
+    </div>
   </div>
 
-  <div>
-    <label for="acMaxHR"> MaxHR </label>
-    <input id="acMaxHR" type="text" formControlName="acMaxHR" />
+  <div class="row mx-auto">
+    <div class=" mt-3 col-md-6 mx-auto">
+      <div class="form-check">
+        <input [(ngModel)]="userModel.gender"
+          class="form-check-input"
+          type="radio"
+          name="gender"
+          id="aeSex_F"
+        value="aeSex_F"
+        />
+        <label class="form-check-label" for="aeSex_F"> S_Female </label>
+      </div>
+    </div>
+    <div class=" mt-3 col-md-6 mx-auto">
+      <div class="form-check">
+        <input [(ngModel)]="userModel.gender"
+          class="form-check-input"
+          type="radio"
+          name="gender"
+          id="afSex_M"
+       value="afSex_M"
+        />
+        <label class="form-check-label" for="afSex_M"> S_Male </label>
+      </div>
+    </div>
+  </div>
+<div class="row mx-auto mt-3">
+  <label for="selection">Choose previous bp range</label>
+</div>
+  <div class="row mx-auto">
+    <div class=" mt-3 col-md-3 mx-auto col-6">
+      <div class="form-check">
+        <input [(ngModel)]="userModel.selection"
+          class="form-check-input"
+          type="radio"
+          name="selection"
+          id="agBPrange"
+      value="agBPrange"
+        />
+        <label class="form-check-label" for="agBPrange"> 85-90 </label>
+      </div>
+    </div>
+
+    <div class=" mt-3 col-md-3 mx-auto col-6">
+      <div class="form-check">
+        <input [(ngModel)]="userModel.selection"
+          class="form-check-input"
+          type="radio"
+          name="selection"
+          id="ahBPrange"
+      value="ahBPrange"
+        />
+        <label class="form-check-label" for="ahBPrange"> 91-95 </label>
+      </div>
+    </div>
+
+    <div class=" mt-3 col-md-3 mx-auto col-6">
+      <div class="form-check">
+        <input [(ngModel)]="userModel.selection"
+          class="form-check-input"
+          type="radio"
+          name="selection"
+          id="aiBPrange"
+      value="aiBPrange"
+        />
+        <label class="form-check-label" for="aiBPrange"> 96-100 </label>
+      </div>
+    </div>
+
+    <div class=" mt-3 col-md-3 mx-auto col-6">
+      <div class="form-check">
+        <input [(ngModel)]="userModel.selection"
+          class="form-check-input"
+          type="radio"
+          name="selection"
+          id="ajBPrange"
+      value="ajBPrange"
+        />
+        <label class="form-check-label" for="ajBPrange"> 101-105 </label>
+      </div>
+    </div>
+  </div>
+<div class="row mx-auto">
+
+  <div class=" mt-3 col-md-3 mx-auto col-6">
+    <div class="form-check">
+      <input [(ngModel)]="userModel.selection"
+        class="form-check-input"
+        type="radio"
+        name="selection"
+        id="akBPrange"
+    value="akBPrange"
+      />
+      <label class="form-check-label" for="akBPrange"> 106-110 </label>
+    </div>
+  </div>
+  <div class=" mt-3 col-md-3 mx-auto col-6">
+    <div class="form-check">
+      <input [(ngModel)]="userModel.selection"
+        class="form-check-input"
+        type="radio"
+        name="selection"
+        id="alBPrange"
+    value="alBPrange"
+      />
+      <label class="form-check-label" for="alBPrange"> 111-105 </label>
+    </div>
+  </div>
+  <div class=" mt-3 col-md-3 mx-auto col-6">
+    <div class="form-check">
+      <input [(ngModel)]="userModel.selection"
+        class="form-check-input"
+        type="radio"
+        name="selection"
+        id="amBPrange"
+    value="amBPrange"
+      />
+      <label class="form-check-label" for="amBPrange"> 106-110 </label>
+    </div>
+  </div>
+  <div class=" mt-3 col-md-3 mx-auto col-6">
+    <div class="form-check">
+      <input [(ngModel)]="userModel.selection"
+        class="form-check-input"
+        type="radio"
+        name="selection"
+        id="anBPrange"
+    value="anBPrange"
+      />
+      <label class="form-check-label" for="anBPrange"> 111-115 </label>
+    </div>
+  </div>
+</div>
+
+
+ 
+<div class="row mx-auto">
+  <div class=" mt-3 col-md-3 mx-auto col-6">
+    <div class="form-check">
+      <input [(ngModel)]="userModel.selection"
+        class="form-check-input"
+        type="radio"
+        name="selection"
+        id="aoBPrange"
+    value="aoBPrange"
+      />
+      <label class="form-check-label" for="aoBPrange"> 116-120 </label>
+    </div>
   </div>
 
-  <div>
-    <input
-      id="adHeartDisease"
-      type="radio"
-      formControlName="adHeartDisease"
-      value="{{ 1 }}"
-    />
-    <label for="adHeartDisease"> Heart Disease </label>
+  <div class=" mt-3 col-md-3 mx-auto col-6">
+    <div class="form-check">
+      <input [(ngModel)]="userModel.selection"
+        class="form-check-input"
+        type="radio"
+        name="selection"
+        id="apBPrange"
+    value="apBPrange"
+      />
+      <label class="form-check-label" for="apBPrange"> 121-125 </label>
+    </div>
   </div>
 
-  <div class="form-check">
-    <input
-      class="form-check-input"
-      type="radio"
-      name="gender"
-      formControlName="aeSex_F"
-      id="aeSex_F"
-      value="{{ 1 }}"
-    />
-    <label class="form-check-label" for="aeSex_F"> S_Female </label>
-  </div>
-  <div class="form-check">
-    <input
-      class="form-check-input"
-      type="radio"
-      name="gender"
-      formControlName="afSex_M"
-      id="afSex_M"
-      value="{{ 1 }}"
-    />
-    <label class="form-check-label" for="afSex_M"> S_Male </label>
+  <div class=" mt-3 col-md-3 mx-auto col-6">
+    <div class="form-check">
+      <input [(ngModel)]="userModel.selection"
+        class="form-check-input"
+        type="radio"
+        name="selection"
+        id="aqBPrange"
+    value="aqBPrange"
+      />
+      <label class="form-check-label" for="aqBPrange"> 126-130 </label>
+    </div>
   </div>
 
-  <div class="form-check">
-    <input
+  <div class=" mt-3 col-md-3 mx-auto col-6">
+    <div class="form-check">
+      <input [(ngModel)]="userModel.selection"
+        class="form-check-input"
+        type="radio"
+        name="selection"
+        id="arBPrange"
+    value="arBPrange"
+      />
+      <label class="form-check-label" for="arBPrange"> 131-135 </label>
+    </div>
+  </div>
+</div>
+ 
+
+
+
+ <div class="row mx-auto">
+  <div class=" mt-3 col-md-3 mx-auto col-6">
+
+    <div class="form-check">
+      <input [(ngModel)]="userModel.selection"
+        class="form-check-input"
+        type="radio"
+        name="selection"
+        id="asBPrange"
+        value="asBPrange"
+    
+      />
+      <label class="form-check-label" for="asBPrange"> 136-140 </label>
+    </div>
+  </div>
+  <div class=" mt-3 col-md-3 mx-auto col-6">
+    <div class="form-check">
+      <input [(ngModel)]="userModel.selection"
+        class="form-check-input"
+        type="radio"
+        name="selection"
+        id="atBPrange"
+    value="atBPrange"
+      />
+      <label class="form-check-label" for="atBPrange"> 141-145 </label>
+    </div>
+  </div>
+
+  <div class=" mt-3 col-md-3 mx-auto col-6">
+    <div class="form-check">
+      <input [(ngModel)]="userModel.selection"
+        class="form-check-input"
+        type="radio"
+        name="selection"
+        id="auBPrange"
+    value="auBPrange"
+      />
+      <label class="form-check-label" for="auBPrange"> 146-150 </label>
+    </div>
+
+  </div>
+  <div class=" mt-3 col-md-3 mx-auto col-6">
+    <div class="form-check">
+      <input [(ngModel)]="userModel.selection"
+        class="form-check-input"
+        type="radio"
+        name="selection"
+        id="avBPrange"
+    value="avBPrange"
+      />
+      <label class="form-check-label" for="avBPrange"> 151-155 </label>
+    </div>
+  </div>
+
+ </div>
+
+  
+
+ 
+<div class="row mx-auto">
+  <div class=" mt-3 col-md-3 mx-auto col-6">
+    <div class="form-check">
+      <input [(ngModel)]="userModel.selection"
+        class="form-check-input"
+        type="radio"
+        name="selection"
+        id="awBPrange"
+    value="awBPrange"
+      />
+      <label class="form-check-label" for="awBPrange"> 156-160 </label>
+    </div>
+  </div>
+  <div class=" mt-3 col-md-3 mx-auto col-6">
+    <div class="form-check">
+      <input [(ngModel)]="userModel.selection"
+        class="form-check-input"
+        type="radio"
+        name="selection"
+        id="axBPrange"
+    value="axBPrange"
+      />
+      <label class="form-check-label" for="axBPrange"> 165-170 </label>
+    </div>
+  </div>
+  <div class=" mt-3 col-md-3 mx-auto col-6">
+    <div class="form-check">
+      <input [(ngModel)]="userModel.selection"
+        class="form-check-input"
+        type="radio"
+        name="selection"
+        id="ayBPrange"
+    value="ayBPrange"
+      />
+      <label class="form-check-label" for="ayBPrange"> 171-175 </label>
+    </div>
+  </div>
+  <div class=" mt-3 col-md-3 mx-auto col-6">
+    <div class="form-check">
+      <input [(ngModel)]="userModel.selection"
+        class="form-check-input"
+        type="radio"
+        name="selection"
+        id="azBPrange"
+    value="azBPrange"
+      />
+      <label class="form-check-label" for="azBPrange"> 176-180 </label>
+    </div>
+  </div>
+</div>
+ 
+<div class="row mx-auto">
+  <div class=" mt-3 col-md-3 mx-auto col-6"> <div class="form-check">
+    <input [(ngModel)]="userModel.selection"
       class="form-check-input"
       type="radio"
       name="selection"
-      formControlName="agBPrange_eighty"
-      id="agBPrange_eighty"
-      value="{{ 1 }}"
-    />
-    <label class="form-check-label" for="agBPrange"> 85-90 </label>
-  </div>
-
-  <div class="form-check">
-    <input
-      class="form-check-input"
-      type="radio"
-      name="selection"
-      formControlName="ahBPrange"
-      id="ahBPrange"
-      value="{{ 1 }}"
-    />
-    <label class="form-check-label" for="ahBPrange"> 91-95 </label>
-  </div>
-
-  <div class="form-check">
-    <input
-      class="form-check-input"
-      type="radio"
-      name="selection"
-      formControlName="agBPrange_nintysix"
-      id="aiBPrange"
-      value="{{ 1 }}"
-    />
-    <label class="form-check-label" for="aiBPrange"> 96-100 </label>
-  </div>
-
-  <div class="form-check">
-    <input
-      class="form-check-input"
-      type="radio"
-      name="selection"
-      formControlName="ajBPrange"
-      id="ajBPrange"
-      value="{{ 1 }}"
-    />
-    <label class="form-check-label" for="ajBPrange"> 101-105 </label>
-  </div>
-
-  <div class="form-check">
-    <input
-      class="form-check-input"
-      type="radio"
-      name="selection"
-      formControlName="akBPrange"
-      id="akBPrange"
-      value="{{ 1 }}"
-    />
-    <label class="form-check-label" for="akBPrange"> 106-110 </label>
-  </div>
-
-  <div class="form-check">
-    <input
-      class="form-check-input"
-      type="radio"
-      name="selection"
-      formControlName="alBPrange"
-      id="alBPrange"
-      value="{{ 1 }}"
-    />
-    <label class="form-check-label" for="alBPrange"> 111-105 </label>
-  </div>
-
-  <div class="form-check">
-    <input
-      class="form-check-input"
-      type="radio"
-      name="selection"
-      formControlName="amBPrange"
-      id="amBPrange"
-      value="{{ 1 }}"
-    />
-    <label class="form-check-label" for="amBPrange"> 106-110 </label>
-  </div>
-
-  <div class="form-check">
-    <input
-      class="form-check-input"
-      type="radio"
-      name="selection"
-      formControlName="anBPrange"
-      id="anBPrange"
-      value="{{ 1 }}"
-    />
-    <label class="form-check-label" for="anBPrange"> 111-115 </label>
-  </div>
-
-  <div class="form-check">
-    <input
-      class="form-check-input"
-      type="radio"
-      name="selection"
-      formControlName="aoBPrange"
-      id="aoBPrange"
-      value="{{ 1 }}"
-    />
-    <label class="form-check-label" for="aoBPrange"> 116-120 </label>
-  </div>
-
-  <div class="form-check">
-    <input
-      class="form-check-input"
-      type="radio"
-      name="selection"
-      formControlName="apBPrange"
-      id="apBPrange"
-      value="{{ 1 }}"
-    />
-    <label class="form-check-label" for="apBPrange"> 121-125 </label>
-  </div>
-
-  <div class="form-check">
-    <input
-      class="form-check-input"
-      type="radio"
-      name="selection"
-      formControlName="aqBPrange"
-      id="aqBPrange"
-      value="{{ 1 }}"
-    />
-    <label class="form-check-label" for="aqBPrange"> 126-130 </label>
-  </div>
-
-
-  <div class="form-check">
-    <input
-      class="form-check-input"
-      type="radio"
-      name="selection"
-      formControlName="arBPrange"
-      id="arBPrange"
-      value="{{ 1 }}"
-    />
-    <label class="form-check-label" for="arBPrange"> 131-135 </label>
-  </div>
-
-  <div class="form-check">
-    <input
-      class="form-check-input"
-      type="radio"
-      name="selection"
-      formControlName="asBPrange"
-      id="asBPrange"
-      value="{{ 1 }}"
-    />
-    <label class="form-check-label" for="asBPrange"> 136-140 </label>
-  </div>
-
-
-  <div class="form-check">
-    <input
-      class="form-check-input"
-      type="radio"
-      name="selection"
-      formControlName="atBPrange"
-      id="atBPrange"
-      value="{{ 1 }}"
-    />
-    <label class="form-check-label" for="atBPrange"> 141-145 </label>
-  </div>
-
-  <div class="form-check">
-    <input
-      class="form-check-input"
-      type="radio"
-      name="selection"
-      formControlName="auBPrange"
-      id="auBPrange"
-      value="{{ 1 }}"
-    />
-    <label class="form-check-label" for="auBPrange"> 146-150 </label>
-  </div>
-
-  <div class="form-check">
-    <input
-      class="form-check-input"
-      type="radio"
-      name="selection"
-      formControlName="avBPrange"
-      id="avBPrange"
-      value="{{ 1 }}"
-    />
-    <label class="form-check-label" for="avBPrange"> 151-155 </label>
-  </div>
-
-  <div class="form-check">
-    <input
-      class="form-check-input"
-      type="radio"
-      name="selection"
-      formControlName="awBPrange"
-      id="awBPrange"
-      value="{{ 1 }}"
-    />
-    <label class="form-check-label" for="awBPrange"> 156-160 </label>
-  </div>
-
-  <div class="form-check">
-    <input
-      class="form-check-input"
-      type="radio"
-      name="selection"
-      formControlName="axBPrange"
-      id="axBPrange"
-      value="{{ 1 }}"
-    />
-    <label class="form-check-label" for="axBPrange"> 165-170 </label>
-  </div>
-
-  <div class="form-check">
-    <input
-      class="form-check-input"
-      type="radio"
-      name="selection"
-      formControlName="ayBPrange"
-      id="ayBPrange"
-      value="{{ 1 }}"
-    />
-    <label class="form-check-label" for="ayBPrange"> 171-175 </label>
-  </div>
-  <div class="form-check">
-    <input
-      class="form-check-input"
-      type="radio"
-      name="selection"
-      formControlName="azBPrange"
-      id="azBPrange"
-      value="{{ 1 }}"
-    />
-    <label class="form-check-label" for="azBPrange"> 176-180 </label>
-  </div>
-
-  <div class="form-check">
-    <input
-      class="form-check-input"
-      type="radio"
-      name="selection"
-      formControlName="baBPrange"
       id="baBPrange"
-      value="{{ 1 }}"
+  value="baBPrange"
     />
     <label class="form-check-label" for="baBPrange"> 181-185 </label>
-  </div>
-
-  <div class="form-check">
-    <input
+  </div></div>
+  <div class=" mt-3 col-md-3 mx-auto col-6"><div class="form-check">
+    <input [(ngModel)]="userModel.selection"
       class="form-check-input"
       type="radio"
       name="selection"
-      formControlName="bbBPrange"
       id="bbBPrange"
-      value="{{ 1 }}"
+      value="bbBPrange"
+  
     />
     <label class="form-check-label" for="bbBPrange"> 186-190 </label>
-  </div>
+  </div></div>
+  <div class=" mt-3 col-md-3 mx-auto col-6 v-none"></div>
+  <div class=" mt-3 col-md-3 mx-auto col-6 v-none"></div>
+
+</div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+ 
+  
+
+ 
+
+  
 
   <!-- <div class="form-check">
-    <input
+    <input [(ngModel)]
       class="form-check-input"
       type="radio"
       name="selection"
-      formControlName="bcBPrange"
       id="bcBPrange"
-      value="{{ 1 }}"
+  
     />
     <label class="form-check-label" for="bcBPrange"> 191-195 </label>
   </div>
 
   <div class="form-check">
-    <input
+    <input [(ngModel)]
       class="form-check-input"
       type="radio"
       name="selection"
-      formControlName="bdBPrange"
       id="bdBPrange"
-      value="{{ 1 }}"
+  
     />
     <label class="form-check-label" for="bdBPrange"> 195-200 </label>
   </div> -->
 
+<div class="row mx-auto">
+  <div class="col-md-12 mx-auto">
+  <button class="btn btn-outline-primary font-weight-bold mt-3 mb-3" type="submit">Predict BP</button>
 
+  </div>
+</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <button class="button" type="submit">Submit</button>
 </form>
