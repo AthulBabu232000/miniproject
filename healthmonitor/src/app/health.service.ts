@@ -1,4 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
+import { Routes } from '@angular/router';
 import { Health } from './health.model';
 
 @Injectable({ providedIn: 'root' })
@@ -24,6 +25,11 @@ console.log(this.listChangedEvent);
     this.changedBP.emit(this.bp);
 
   }
+  getDisplayHealth(){
+    
+    return this.listOfHealths;
+  }
+
 
 //   deletePost(index: number) {
 //     this.listOfPost.splice(index, 1);

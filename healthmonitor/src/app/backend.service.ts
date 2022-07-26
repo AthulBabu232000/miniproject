@@ -79,7 +79,23 @@ export class BackEndService {
     )
     .subscribe();
   }
+  getDisplayer(){
+    this.http
+      .get<Health[]>(
+        'https://nodemcuchecking-default-rtdb.firebaseio.com/userAdd.json'
+      )
+      .pipe(
+        tap((listOfHealths: Health[]) => {
+          this.healthService.listOfHealths=listOfHealths;
+          console.log(this.healthService.listOfHealths);
+          // console.log(listOfHealths);
+        })
+      )
+      .subscribe();
+  }
+  
 }
+
 
 
 

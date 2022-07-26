@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Route, Router, Routes } from '@angular/router';
 import { BackEndService } from '../backend.service';
 import { User } from '../user.model';
 import { UserService } from '../user.service';
@@ -40,42 +41,44 @@ export class DetailentryComponent implements OnInit {
     baBPrange: '0',
     bbBPrange: '0',
   };
+ 
   userModel = new User('22', false, '0', false, '0', '0');
   constructor(
     private formBuilder: FormBuilder,
     private userDetails: UserService,
-    private backEndService: BackEndService
+    private backEndService: BackEndService,
+    private router:Router
   ) {}
   ngOnInit(): void {}
   onSubmit(): void {
-    // this.data = this.userDetails.clearUserDetails();
-    console.warn('Your order has been submitted');
-    if(this.userModel.selection.toString() in this.userData) {
-     
-console.log(this.userModel);
+   
+    if (this.userModel.selection.toString() in this.userData) {
+      console.log(this.userModel);
       Object.keys(this.userData).forEach((k) => {
-        if (k == this.userModel.selection || k == this.userModel.gender)  {
+        if (k == this.userModel.selection || k == this.userModel.gender) {
           this.userData[k as keyof typeof this.userData] = '1';
         } else {
           this.userData[k as keyof typeof this.userData] = '0';
         }
       });
-
     }
-    
-this.userData.aaAge=this.userModel.aaAge;
-this.userData.acMaxHR = this.userModel.acMaxHR;
-if(this.userModel.abSugar==true){
-  this.userData.abSugar='1';
-}else{
-  this.userData.abSugar='0';
-}
 
-if(this.userModel.adHeartDisease==true){
-  this.userData.adHeartDisease='1';
-}else{
-  this.userData.adHeartDisease='0';
-}
+    this.userData.aaAge = this.userModel.aaAge;
+    this.userData.acMaxHR = this.userModel.acMaxHR;
+    if (this.userModel.abSugar == true) {
+      this.userData.abSugar = '1';
+    } else {
+      this.userData.abSugar = '0';
+    }
+
+    if (this.userModel.adHeartDisease == true) {
+      this.userData.adHeartDisease = '1';
+    } else {
+      this.userData.adHeartDisease = '0';
+    }
     this.backEndService.saveUser(this.userData);
+    this.router.navigateByUrl('');
+
   }
+
 }
