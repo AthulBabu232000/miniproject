@@ -33,6 +33,7 @@ void setup()
 
   Serial.begin(115200);
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+
    lcd.begin();
   lcd.backlight();
   lcd.setCursor(0, 0);
