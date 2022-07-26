@@ -3,6 +3,10 @@
 #include <ESP8266WiFi.h>
 #include <Wire.h>
 #include "MAX30100_PulseOximeter.h"
+#include <LiquidCrystal_I2C.h>
+
+// Set the LCD address to 0x27 for a 16 chars and 2 line display
+LiquidCrystal_I2C lcd(0x27, 16, 2);
 #define REPORTING_PERIOD_MS     1000
 PulseOximeter pox;
 uint32_t tsLastReport = 0;
@@ -29,24 +33,49 @@ void setup()
 
   Serial.begin(115200);
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+   lcd.begin(); // Init with pin default ESP8266 or ARDUINO
+  // lcd.begin(0, 2); //ESP8266-01 I2C with pin 0-SDA 2-SCL
+  // Turn on the blacklight and print a message.
+  lcd.backlight();
+  lcd.setCursor(0, 0);
+
+#if defined(ESP8266)
+  lcd.print("ESP8266");
+#else
+  lcd.print("ARDUINO");
+#endif
+
+  lcd.setCursor(0, 0);
   Serial.print("Connecting to Wi-Fi");
+  lcd.print("Connecting");
   while (WiFi.status() != WL_CONNECTED)
   {
     Serial.print(".");
+    lcd.print(".");
     delay(300);
   }
+  lcd.clear();
   Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
 Firebase.reconnectWiFi(true);
   Serial.println();
+  lcd.setCursor(0, 0);
   Serial.print("Connected with IP: ");
+  lcd.print("Connected");
   Serial.print(WiFi.localIP());
   Serial.println();
+  lcd.setCursor(0,1);
   Serial.print("Initializing pulse oximeter..");
-
+lcd.print("initializing.. ");
     if (!pox.begin()) {
+      lcd.clear();
+      lcd.setCursor(0, 0);
+      lcd.print("FAILED");
         Serial.println("FAILED");
         for(;;);
     } else {
+       lcd.clear();
+      lcd.setCursor(0, 0);
+      lcd.print("SUCCESS");
         Serial.println("SUCCESS");
     }
 
@@ -54,35 +83,9 @@ pox.setIRLedCurrent(MAX30100_LED_CURR_7_6MA);
 pox.setOnBeatDetectedCallback(onBeatDetected);
     
 
+lcd.clear();
 
 }
-//
-//void sensorUpdate(float hVal, float oVal) {
-//  if (Firebase.setInt(firebaseData, "athul/heartrate", hVal))
-//  {
-//    Serial.println("PASSED heartrate");
-//  }
-//  else
-//  {
-//    Serial.println("FAILED");
-//    Serial.println("REASON: " + firebaseData.errorReason());
-//    Serial.println("------------------------------------");
-//    Serial.println();
-//  }
-//  Serial.print("\n");
-//  if (Firebase.setInt(firebaseData, "athul/spo2", oVal))
-//  {
-//    Serial.println("PASSED spo2");
-//  }
-//  else
-//  {
-//    Serial.println("FAILED");
-//    Serial.println("REASON: " + firebaseData.errorReason());
-//    Serial.println("------------------------------------");
-//    Serial.println();
-//  }
-//  Serial.print("\n");
-//}
 
 void loop() {
 
@@ -96,21 +99,25 @@ void loop() {
         Serial.print("bpm / SpO2:");
         Serial.print(o2);
         Serial.println("%");
-hr_total=hr_total+hr;
+
 i=i+1;
 Serial.println(i);
-Serial.println(hr_total);
+
         tsLastReport = millis();
     }
-    if(i==30){
+    if(i==15){
         delay(2000);
+        lcd.setCursor(0, 0);
+        lcd.print("hr: ");
+      lcd.print(hr);
+      lcd.print("bpm");
+      lcd.setCursor(0,1);
+      lcd.print("spO2: ");
+      lcd.print(o2);
+      lcd.print("%");
        Firebase.setFloat(firebaseData, "athul/heartrate",hr);
     Firebase.setFloat(firebaseData, "athul/spo2",o2);
     pox.resume();
       
     }
-  
-
-   
-//    sensorUpdate(pox.getHeartRate(),pox.getSpO2());
 }
